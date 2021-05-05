@@ -1,0 +1,60 @@
+@import '../../styles/shared.scss';
+
+// Contact styles
+.item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-basis: calc(100% / 1 - 15px);
+
+  padding: 15px 5px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+
+  text-align: center;
+
+  margin-left: 15px;
+  margin-top: 15px;
+
+  transition: all $transition-duration $timing-function;
+
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    flex-basis: calc(100% / 2 - 15px);
+  }
+
+  @media screen and (min-width: $desktop) {
+    flex-basis: calc(100% / 3 - 15px);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: rgb(33 150 243 / 10%);
+    transition: background-color $transition-duration $timing-function;
+  }
+}
+
+// Contact name
+.name {
+  color: $secondary-color;
+
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+// Contact number
+.number {
+  margin-right: 15px;
+
+  color: #000000;
+
+  font-weight: 700;
+  text-decoration: none;
+
+  transition: color $transition-duration $timing-function;
+
+  &:hover,
+  &:focus {
+    color: $main-color;
+    transition: color $transition-duration $timing-function;
+  }
+}

@@ -1,0 +1,43 @@
+@import '../../styles/shared.scss';
+
+// Title container
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Title text
+.title {
+  display: inline;
+  margin: 10px 0;
+
+  font-size: 1.5rem;
+
+  color: $main-color;
+
+  opacity: 1;
+  transition: opacity $transition-duration linear;
+
+  cursor: default;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+    transition: opacity $transition-duration $timing-function;
+  }
+
+  @media screen and (min-width: $mobile) {
+    font-size: 2rem;
+  }
+}
+
+// Title react animation
+.appear {
+  transform: translateX(-100%);
+}
+
+.appearActive {
+  transform: translateX(0);
+  transition: all 500ms linear;
+}

@@ -1,0 +1,66 @@
+@import '../../styles/shared.scss';
+
+// Footer
+.footer {
+  padding: 20px 0;
+}
+
+// Footer text
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: $small-color;
+}
+
+// Footer emoji icon
+.heart {
+  margin: 0 5px;
+
+  animation: heartbeat 2500ms infinite linear;
+
+  cursor: default;
+}
+
+// Footer link
+.link {
+  text-decoration: none;
+  color: currentColor;
+
+  transition: color $transition-duration $timing-function;
+
+  &:hover,
+  &:focus {
+    color: orangered;
+
+    transition: color $transition-duration $timing-function;
+  }
+}
+
+// Name inside link
+.name {
+  margin-left: 5px;
+}
+
+// Animation for emoji
+@keyframes heartbeat {
+  0% {
+    transform: scale(0.75);
+  }
+  20% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.75);
+  }
+  60% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(0.75);
+  }
+}

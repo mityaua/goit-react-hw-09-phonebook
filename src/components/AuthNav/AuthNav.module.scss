@@ -1,0 +1,41 @@
+@import '../../styles/shared.scss';
+
+// AuthNav menu
+.list {
+  display: flex;
+}
+
+// AuthNav menu item
+.item {
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+// AuthNav menu item link
+.link {
+  display: block;
+
+  font-weight: 500;
+  text-decoration: none;
+
+  color: $secondary-color;
+
+  transition: color $transition-duration $timing-function;
+
+  &:hover,
+  &:focus {
+    color: $main-color;
+    transition: color $transition-duration $timing-function;
+  }
+
+  &--active {
+    color: $main-color;
+
+    text-decoration: none;
+  }
+
+  @media screen and (min-width: $to-tablet) {
+    padding: 20px 0;
+  }
+}

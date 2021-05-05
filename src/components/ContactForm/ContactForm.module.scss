@@ -1,0 +1,44 @@
+@import '../../styles/shared.scss';
+
+// Add contact form
+.form {
+  width: 100%;
+  margin: 15px auto;
+  padding: 15px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+
+  @media screen and (min-width: $tablet) {
+    width: 350px;
+  }
+}
+
+// Labels for inputs
+.label {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 15px;
+
+  color: $secondary-color;
+
+  &__text {
+    margin-bottom: 5px;
+  }
+}
+
+// Form inputs
+.input {
+  padding: 11px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+
+  line-height: normal;
+
+  transition: all $transition-duration $timing-function;
+
+  &:focus {
+    outline: transparent;
+    border: 1px solid $main-color;
+  }
+}

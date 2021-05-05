@@ -1,0 +1,74 @@
+@import '../../styles/shared.scss';
+
+// User menu navigation container
+.profile {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  @media screen and (min-width: $to-tablet) {
+    margin-bottom: 0;
+  }
+}
+
+// User avatar container
+.thumb {
+  width: 32px;
+  margin-right: 10px;
+}
+
+// User avatar container
+.avatar {
+  width: 100%;
+
+  border-radius: 50%;
+
+  opacity: 1;
+
+  transition: opacity $transition-duration $timing-function;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+
+    transition: opacity $transition-duration $timing-function;
+  }
+}
+
+// User greetings text
+.welcome {
+  margin-right: 10px;
+}
+
+// User email
+.email {
+  font-weight: 500;
+}
+
+// Logout button
+.button {
+  padding: 5px;
+  border: 0px solid transparent;
+  border-radius: 4px;
+
+  color: $clear-color;
+  background-color: $inactive-color;
+
+  box-shadow: $main-shadow;
+
+  opacity: 0.8;
+
+  transition: opacity $transition-duration $timing-function;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+
+    transition: opacity $transition-duration $timing-function;
+  }
+}

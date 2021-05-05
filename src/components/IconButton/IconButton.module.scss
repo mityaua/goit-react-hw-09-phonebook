@@ -1,0 +1,26 @@
+@import '../../styles/shared.scss';
+
+// IconButton component styles
+.IconButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  border: none;
+  outline: 1px solid transparent;
+
+  background-color: transparent;
+
+  cursor: pointer;
+
+  & svg {
+    transition: fill $transition-duration $timing-function;
+  }
+
+  & svg:hover,
+  & svg:focus {
+    fill: tomato;
+    transition: fill $transition-duration $timing-function;
+  }
+}
