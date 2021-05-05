@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { authSelectors } from '../../redux/auth';
 
@@ -10,7 +9,9 @@ import UserMenu from '../UserMenu';
 import styles from './AppBar.module.scss';
 
 // Компонент хедера приложения (бара)
-const AppBar = ({ isAuthenticated }) => {
+const AppBar = () => {
+  const isAuthenticated = useSelector(authSelectors.getIsAuthenticated); // Селектор статуса авторизации юзера
+
   return (
     <header className={styles.header}>
       <Navigation />
@@ -20,12 +21,4 @@ const AppBar = ({ isAuthenticated }) => {
   );
 };
 
-AppBar.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: authSelectors.getIsAuthenticated(state),
-});
-
-export default connect(mapStateToProps, null)(AppBar);
+export default AppBar;

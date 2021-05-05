@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { authOperations } from '../../redux/auth/';
+import { authOperations, authSelectors } from '../../redux/auth/';
 
 import styles from './LoginForm.module.scss';
 
@@ -11,9 +10,15 @@ const initialState = {
   password: '',
 };
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = () => {
   const [state, setState] = useState(initialState);
   const { email, password } = state;
+
+  const isLoading = useSelector(authSelectors.getLoading); // Селектор статуса загрузки
+
+  const dispatch = useDispatch();
+
+  const onLogin = state => dispatch(authOperations.logIn(state)); // Диспатчит операцию входа
 
   const hanldeChange = event => {
     const { name, value } = event.target;
@@ -27,7 +32,7 @@ const LoginForm = ({ onLogin }) => {
   const hanldeSubmit = event => {
     event.preventDefault();
 
-    onLogin(state);
+    onLogin(state); // Вызов функции операции входа и передает данные из стейта
 
     resetForm();
   };
@@ -48,6 +53,7 @@ const LoginForm = ({ onLogin }) => {
           className={styles.input}
           placeholder="Your e-mail"
           aria-label="Input for your email"
+          disabled={isLoading}
           required
         />
       </label>
@@ -62,12 +68,13 @@ const LoginForm = ({ onLogin }) => {
           className={styles.input}
           placeholder="Your password"
           aria-label="Input for your password"
+          disabled={isLoading}
           required
         />
       </label>
 
       <div className={styles.container}>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={styles.button} disabled={isLoading}>
           Log in
         </button>
       </div>
@@ -75,12 +82,4 @@ const LoginForm = ({ onLogin }) => {
   );
 };
 
-LoginForm.propTypes = {
-  onLogin: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = {
-  onLogin: authOperations.logIn,
-};
-
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default LoginForm;

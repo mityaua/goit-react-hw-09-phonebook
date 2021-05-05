@@ -5,21 +5,19 @@ const AppFooter = () => {
   return (
     <footer className={styles.footer}>
       <small className={styles.text}>
-        &copy; {new Date().getFullYear()} Developed with{' '}
+        &copy; {new Date().getFullYear()} Developed by
         <span role="img" aria-label="heart" className={styles.heart}>
-          ❤
+          <a
+            href="https://github.com/mityaua"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Developer's Github"
+            aria-label="Developer's Github"
+            className={styles.link}
+          >
+            🐸
+          </a>
         </span>
-        by
-        <a
-          href="https://github.com/mityaua"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Github profile"
-          aria-label="Link to Github profile"
-          className={styles.link}
-        >
-          <span className={styles.name}>Mitya</span>
-        </a>
       </small>
     </footer>
   );

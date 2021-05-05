@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { authOperations } from '../../redux/auth';
+import { authOperations, authSelectors } from '../../redux/auth';
 
 import styles from './RegisterForm.module.scss';
 
@@ -12,9 +11,15 @@ const initialState = {
   password: '',
 };
 
-const RegisterForm = ({ onRegister }) => {
+const RegisterForm = () => {
   const [state, setState] = useState(initialState);
   const { name, email, password } = state;
+
+  const isLoading = useSelector(authSelectors.getLoading); // Селектор статуса загрузки
+
+  const dispatch = useDispatch();
+
+  const onRegister = state => dispatch(authOperations.register(state)); // Диспатчит операцию регистрации
 
   const hanldeChange = event => {
     const { name, value } = event.target;
@@ -28,7 +33,7 @@ const RegisterForm = ({ onRegister }) => {
   const hanldeSubmit = event => {
     event.preventDefault();
 
-    onRegister(state);
+    onRegister(state); // Вызовает операцию регистрации и передает данные из стейта
 
     resetForm();
   };
@@ -65,6 +70,7 @@ const RegisterForm = ({ onRegister }) => {
           className={styles.input}
           placeholder="Your e-mail"
           aria-label="Input for your Email"
+          disabled={isLoading}
           required
         />
       </label>
@@ -79,12 +85,13 @@ const RegisterForm = ({ onRegister }) => {
           className={styles.input}
           placeholder="Should be at least 7 characters"
           aria-label="Input for your password"
+          disabled={isLoading}
           required
         />
       </label>
 
       <div className={styles.container}>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={styles.button} disabled={isLoading}>
           Create account
         </button>
       </div>
@@ -92,12 +99,4 @@ const RegisterForm = ({ onRegister }) => {
   );
 };
 
-RegisterForm.propTypes = {
-  onRegister: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = {
-  onRegister: authOperations.register,
-};
-
-export default connect(null, mapDispatchToProps)(RegisterForm);
+export default RegisterForm;

@@ -17,7 +17,7 @@ const filter = createReducer('', {
   [actions.changeFilter]: (_, { payload }) => payload,
 });
 
-// Создание редюсера индикации загрузки
+// Создание редюсера для индикации загрузки контактов
 const loading = createReducer(false, {
   [actions.fetchContactsRequest]: () => true,
   [actions.fetchContactsSuccess]: () => false,
@@ -32,7 +32,7 @@ const loading = createReducer(false, {
   [actions.deleteContactError]: () => false,
 });
 
-// Создание редюсера обработки ошибок
+// Создание редюсера обработки ошибок в контактах
 const error = createReducer(null, {
   [actions.fetchContactsError]: (_, { payload }) => payload,
   [actions.addContactError]: (_, { payload }) => payload,

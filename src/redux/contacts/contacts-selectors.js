@@ -17,18 +17,6 @@ const getfilteredContacts = createSelector(
   },
 );
 
-// Композитный селектор для фильтра контактов (вариант без мемоизации)
-// export const getfilteredContacts = state => {
-//   const contacts = getContacts(state);
-//   const filter = getFilter(state);
-
-//   const normalizedFilter = filter.toLowerCase();
-
-//   return contacts.filter(({ name }) =>
-//     name.toLowerCase().includes(normalizedFilter),
-//   );
-// };
-
 // eslint-disable-next-line
 export default {
   getContacts,

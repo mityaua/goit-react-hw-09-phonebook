@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Switch } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
@@ -32,11 +32,13 @@ const PageNotFound = lazy(() =>
   import('./pages/PageNotFound' /* webpackChunkName: "404-page" */),
 );
 
-const App = ({ getCurrentUser }) => {
+const App = () => {
+  const dispatch = useDispatch();
+
   // Получение текущего юзера при маунте приложения
   useEffect(() => {
-    getCurrentUser();
-  }, [getCurrentUser]);
+    dispatch(authOperations.getCurrentUser());
+  }, [dispatch]);
 
   return (
     <Container>
@@ -77,8 +79,4 @@ const App = ({ getCurrentUser }) => {
   );
 };
 
-const mapDispatchToProps = {
-  getCurrentUser: authOperations.getCurrentUser,
-};
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

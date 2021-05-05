@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+
+import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
 import AddContactButton from '../AddContactButton';
 
@@ -12,9 +14,17 @@ const initialState = {
 };
 
 // Компонент формы добавления контакта
-const ContactForm = ({ contacts, isLoading, onSubmit }) => {
+const ContactForm = () => {
   const [state, setState] = useState(initialState);
   const { name, number } = state;
+
+  const contacts = useSelector(contactsSelectors.getContacts); // Селектор всех контактов
+  const isLoading = useSelector(contactsSelectors.getLoading); // Селектор статуса загрузки
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (name, number) =>
+    dispatch(contactsOperations.addContact(name, number)); // Операция добавления контакта
 
   // Следит за инпутом
   const hanldeChange = event => {
@@ -26,7 +36,7 @@ const ContactForm = ({ contacts, isLoading, onSubmit }) => {
     }));
   };
 
-  // Метод на отправке формы. Формирует из стейта контакт и передает во внешний метод
+  // Метод на отправке формы
   const hanldeSubmit = event => {
     event.preventDefault();
 
@@ -42,9 +52,10 @@ const ContactForm = ({ contacts, isLoading, onSubmit }) => {
       contact => contact.number === number,
     );
 
-    // Отправка имени и номера после проверки (в проп-метод из контейнера)
+    // Отправка имени и номера после проверки
     if (!nameInContacts && !numberInContacts) {
-      onSubmit(normalizedName, number);
+      onSubmit(normalizedName, number); // Вызов операции добавления контакта
+
       resetForm();
       return;
     }
@@ -60,7 +71,7 @@ const ContactForm = ({ contacts, isLoading, onSubmit }) => {
   return (
     <form className={styles.form} onSubmit={hanldeSubmit}>
       <label className={styles.label}>
-        <span className={styles.label__text}>Name</span>
+        <span className={styles.text}>Name</span>
         <input
           type="text"
           name="name"
@@ -77,7 +88,7 @@ const ContactForm = ({ contacts, isLoading, onSubmit }) => {
       </label>
 
       <label className={styles.label}>
-        <span className={styles.label__text}>Number</span>
+        <span className={styles.text}>Number</span>
         <input
           type="tel"
           name="number"
@@ -96,18 +107,6 @@ const ContactForm = ({ contacts, isLoading, onSubmit }) => {
       <AddContactButton />
     </form>
   );
-};
-
-ContactForm.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-  ),
-  isLoading: PropTypes.bool.isRequired,
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ContactForm;

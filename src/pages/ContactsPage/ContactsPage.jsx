@@ -14,13 +14,20 @@ import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 const ContactsPage = () => {
   const isLoadingContacts = useSelector(state =>
     contactsSelectors.getLoading(state),
-  );
-  const isError = useSelector(state => contactsSelectors.getError(state));
+  ); // Селектор статуса загрузки из контактов
+  const isError = useSelector(state => contactsSelectors.getError(state)); // Селектор статуса ошибки из контактов
+
   const dispatch = useDispatch();
 
+  // Фетч за контактами при маунте
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
+
+  // Сетит title страницы при маунте компонента
+  useEffect(() => {
+    document.title = 'Your contacts | Phonebook';
+  }, []);
 
   return (
     <>
