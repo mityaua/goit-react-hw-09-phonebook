@@ -26,7 +26,7 @@ const ContactsPage = () => {
 
   // Сетит title страницы при маунте компонента
   useEffect(() => {
-    document.title = 'Your contacts | Phonebook';
+    document.title = 'Contacts list | Phonebook';
   }, []);
 
   return (
