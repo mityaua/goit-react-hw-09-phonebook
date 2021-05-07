@@ -9,7 +9,7 @@ import routes from '../../routes';
 import styles from './HomePage.module.scss';
 
 // Компонент главной страницы приложения
-const HomePage = () => {
+export default function HomePage() {
   // Сетит title страницы при маунте компонента
   useEffect(() => {
     document.title = 'Phonebook | React Application';
@@ -43,6 +43,4 @@ const HomePage = () => {
       </section>
     </main>
   );
-};
-
-export default HomePage;
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { authOperations, authSelectors } from '../../redux/auth';
@@ -11,7 +11,8 @@ const initialState = {
   password: '',
 };
 
-const RegisterForm = () => {
+// Компонент формы регистрации
+export default function RegisterForm() {
   const [state, setState] = useState(initialState);
   const { name, email, password } = state;
 
@@ -19,10 +20,16 @@ const RegisterForm = () => {
 
   const dispatch = useDispatch();
 
-  const onRegister = state => dispatch(authOperations.register(state)); // Диспатчит операцию регистрации
+  // Диспатчит операцию регистрации + useCallback
+  const onRegister = useCallback(
+    state => {
+      dispatch(authOperations.register(state));
+    },
+    [dispatch],
+  );
 
-  const hanldeChange = event => {
-    const { name, value } = event.target;
+  const hanldeChange = e => {
+    const { name, value } = e.target;
 
     setState(prev => ({
       ...prev,
@@ -30,8 +37,8 @@ const RegisterForm = () => {
     }));
   };
 
-  const hanldeSubmit = event => {
-    event.preventDefault();
+  const hanldeSubmit = e => {
+    e.preventDefault();
 
     onRegister(state); // Вызовает операцию регистрации и передает данные из стейта
 
@@ -97,6 +104,4 @@ const RegisterForm = () => {
       </div>
     </form>
   );
-};
-
-export default RegisterForm;
+}

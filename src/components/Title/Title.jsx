@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import styles from './Title.module.scss';
 
 // Компонент заголовка для страниц
-const Title = ({ children }) => {
+export default function Title({ children }) {
   const itemRef = createRef(null);
 
   return (
@@ -23,7 +23,7 @@ const Title = ({ children }) => {
       </div>
     </CSSTransition>
   );
-};
+}
 
 Title.defaultProps = {
   children: [],
@@ -32,5 +32,3 @@ Title.defaultProps = {
 Title.propTypes = {
   children: PropTypes.node,
 };
-
-export default Title;

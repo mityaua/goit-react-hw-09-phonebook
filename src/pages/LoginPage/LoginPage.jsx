@@ -8,7 +8,7 @@ import LoginForm from '../../components/LoginForm';
 import Loader from '../../components/Loader';
 
 // Компонент страницы автозирации
-const LoginPage = () => {
+export default function LoginPage() {
   const isLoading = useSelector(authSelectors.getLoading); // Селектор статуса загрузки
 
   // Сетит title страницы при маунте компонента
@@ -25,6 +25,4 @@ const LoginPage = () => {
       {isLoading && <Loader />}
     </main>
   );
-};
-
-export default LoginPage;
+}

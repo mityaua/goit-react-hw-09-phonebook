@@ -7,7 +7,7 @@ import ContactItem from '../ContactItem';
 import styles from './ContactsList.module.scss';
 
 // Компонент списка контактов
-const ContactsList = () => {
+export default function ContactsList() {
   const contacts = useSelector(contactsSelectors.getfilteredContacts); // Селектор всех контактов
 
   return (
@@ -17,6 +17,4 @@ const ContactsList = () => {
       ))}
     </ul>
   );
-};
-
-export default ContactsList;
+}

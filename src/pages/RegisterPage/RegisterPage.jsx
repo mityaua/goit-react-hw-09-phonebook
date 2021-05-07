@@ -8,7 +8,7 @@ import RegisterForm from '../../components/RegisterForm';
 import Loader from '../../components/Loader';
 
 // Компонент страницы регистрации
-const RegisterPage = () => {
+export default function RegisterPage() {
   const isLoading = useSelector(authSelectors.getLoading); // Селектор статуса загрузки
 
   // Сетит title страницы при маунте компонента
@@ -25,6 +25,4 @@ const RegisterPage = () => {
       {isLoading && <Loader />}
     </main>
   );
-};
-
-export default RegisterPage;
+}

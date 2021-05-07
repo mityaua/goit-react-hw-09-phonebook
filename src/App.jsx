@@ -32,7 +32,7 @@ const PageNotFound = lazy(() =>
   import('./pages/PageNotFound' /* webpackChunkName: "404-page" */),
 );
 
-const App = () => {
+export default function App() {
   const dispatch = useDispatch();
 
   // Получение текущего юзера при маунте приложения
@@ -77,6 +77,4 @@ const App = () => {
       <ToastContainer autoClose={2500} />
     </Container>
   );
-};
-
-export default App;
+}

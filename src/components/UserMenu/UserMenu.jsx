@@ -5,13 +5,15 @@ import { authSelectors, authOperations } from '../../redux/auth';
 import styles from './UserMenu.module.scss';
 
 // Компонент меню пользователя после авторизации
-const UserMenu = () => {
+export default function UserMenu() {
   const email = useSelector(authSelectors.getUserEmail); // Селектор почты юзера
 
   const dispatch = useDispatch();
+
+  // Диспатчит операцию выхода из профиля + useCallback
   const onLogout = useCallback(() => dispatch(authOperations.logOut()), [
     dispatch,
-  ]); // Диспатчит операцию выхода из профиля через коллбек
+  ]);
 
   return (
     <div className={styles.profile}>
@@ -39,6 +41,4 @@ const UserMenu = () => {
       </button>
     </div>
   );
-};
-
-export default UserMenu;
+}

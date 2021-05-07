@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -14,7 +14,7 @@ const initialState = {
 };
 
 // Компонент формы добавления контакта
-const ContactForm = () => {
+export default function ContactForm() {
   const [state, setState] = useState(initialState);
   const { name, number } = state;
 
@@ -23,12 +23,17 @@ const ContactForm = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = (name, number) =>
-    dispatch(contactsOperations.addContact(name, number)); // Операция добавления контакта
+  // Диспатчит операцию добавления контакта + useCallback
+  const onSubmit = useCallback(
+    (name, number) => {
+      dispatch(contactsOperations.addContact(name, number));
+    },
+    [dispatch],
+  );
 
   // Следит за инпутом
-  const hanldeChange = event => {
-    const { name, value } = event.currentTarget;
+  const hanldeChange = e => {
+    const { name, value } = e.currentTarget;
 
     setState(prev => ({
       ...prev,
@@ -37,8 +42,8 @@ const ContactForm = () => {
   };
 
   // Метод на отправке формы
-  const hanldeSubmit = event => {
-    event.preventDefault();
+  const hanldeSubmit = e => {
+    e.preventDefault();
 
     const normalizedName = name.toLowerCase();
 
@@ -107,6 +112,4 @@ const ContactForm = () => {
       <AddContactButton />
     </form>
   );
-};
-
-export default ContactForm;
+}

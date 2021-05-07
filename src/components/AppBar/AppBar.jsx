@@ -9,7 +9,7 @@ import UserMenu from '../UserMenu';
 import styles from './AppBar.module.scss';
 
 // Компонент хедера приложения (бара)
-const AppBar = () => {
+export default function AppBar() {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated); // Селектор статуса авторизации юзера
 
   return (
@@ -19,6 +19,4 @@ const AppBar = () => {
       {isAuthenticated ? <UserMenu /> : <AuthNav />}
     </header>
   );
-};
-
-export default AppBar;
+}

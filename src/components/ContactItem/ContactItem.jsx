@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { contactsOperations } from '../../redux/contacts';
@@ -9,10 +10,15 @@ import { ReactComponent as DeleteIcon } from '../../assets/images/delete.svg';
 import styles from './ContactItem.module.scss';
 
 // Компонент одного контакта
-const ContactItem = ({ contact }) => {
+export default function ContactItem({ contact }) {
   const dispatch = useDispatch();
 
-  const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id)); // Операция удаления контакта
+  const onDeleteContact = useCallback(
+    id => {
+      dispatch(contactsOperations.deleteContact(id));
+    },
+    [dispatch],
+  ); // Операция удаления контакта + useCallback
 
   return (
     <li className={styles.item}>
@@ -29,7 +35,7 @@ const ContactItem = ({ contact }) => {
       </IconButton>
     </li>
   );
-};
+}
 
 ContactItem.propTypes = {
   contact: PropTypes.shape({
@@ -38,5 +44,3 @@ ContactItem.propTypes = {
     number: PropTypes.string.isRequired,
   }),
 };
-
-export default ContactItem;

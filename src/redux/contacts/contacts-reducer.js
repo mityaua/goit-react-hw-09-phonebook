@@ -48,5 +48,4 @@ const error = createReducer(null, {
   [actions.deleteContactSuccess]: () => null,
 });
 
-// Экспорт всех редюсеров через комбайн
 export default combineReducers({ items, filter, loading, error });

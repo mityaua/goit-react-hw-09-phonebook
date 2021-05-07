@@ -1,7 +1,7 @@
 import styles from './AppFooter.module.scss';
 
 // Компонент футера приложения
-const AppFooter = () => {
+export default function AppFooter() {
   return (
     <footer className={styles.footer}>
       <small className={styles.text}>
@@ -21,6 +21,4 @@ const AppFooter = () => {
       </small>
     </footer>
   );
-};
-
-export default AppFooter;
+}

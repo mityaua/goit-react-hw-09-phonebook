@@ -8,7 +8,7 @@ import { ReactComponent as SpaceImage } from '../../assets/images/404.svg';
 import styles from './PageNotFound.module.scss';
 
 // Компонент страницы 404
-const PageNotFound = () => {
+export default function PageNotFound() {
   // Сетит title страницы при маунте компонента
   useEffect(() => {
     document.title = 'Error 404 | Phonebook';
@@ -40,6 +40,4 @@ const PageNotFound = () => {
       </NavLink>
     </div>
   );
-};
-
-export default PageNotFound;
+}

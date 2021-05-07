@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { authOperations, authSelectors } from '../../redux/auth/';
@@ -10,7 +10,8 @@ const initialState = {
   password: '',
 };
 
-const LoginForm = () => {
+// Компонент формы авторизации
+export default function LoginForm() {
   const [state, setState] = useState(initialState);
   const { email, password } = state;
 
@@ -18,10 +19,16 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const onLogin = state => dispatch(authOperations.logIn(state)); // Диспатчит операцию входа
+  // Диспатчит операцию входа + useCallback
+  const onLogin = useCallback(
+    state => {
+      dispatch(authOperations.logIn(state));
+    },
+    [dispatch],
+  );
 
-  const hanldeChange = event => {
-    const { name, value } = event.target;
+  const hanldeChange = e => {
+    const { name, value } = e.target;
 
     setState(prev => ({
       ...prev,
@@ -29,8 +36,8 @@ const LoginForm = () => {
     }));
   };
 
-  const hanldeSubmit = event => {
-    event.preventDefault();
+  const hanldeSubmit = e => {
+    e.preventDefault();
 
     onLogin(state); // Вызов функции операции входа и передает данные из стейта
 
@@ -80,6 +87,4 @@ const LoginForm = () => {
       </div>
     </form>
   );
-};
-
-export default LoginForm;
+}

@@ -11,13 +11,13 @@ import Loader from '../../components/Loader';
 import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
 // Компонент страницы контактов
-const ContactsPage = () => {
+export default function ContactsPage() {
+  const dispatch = useDispatch();
+
   const isLoadingContacts = useSelector(state =>
     contactsSelectors.getLoading(state),
   ); // Селектор статуса загрузки из контактов
   const isError = useSelector(state => contactsSelectors.getError(state)); // Селектор статуса ошибки из контактов
-
-  const dispatch = useDispatch();
 
   // Фетч за контактами при маунте
   useEffect(() => {
@@ -30,7 +30,7 @@ const ContactsPage = () => {
   }, []);
 
   return (
-    <>
+    <main>
       <ContactForm />
 
       <Filter />
@@ -40,8 +40,6 @@ const ContactsPage = () => {
       {isLoadingContacts && <Loader />}
 
       {isError && <Alert severity="error">{isError}</Alert>}
-    </>
+    </main>
   );
-};
-
-export default ContactsPage;
+}

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { contactsSelectors, contactsActions } from '../../redux/contacts';
@@ -5,14 +6,19 @@ import { contactsSelectors, contactsActions } from '../../redux/contacts';
 import styles from './Filter.module.scss';
 
 // Компонент фильтра контактов
-const Filter = () => {
+export default function Filter() {
   const value = useSelector(contactsSelectors.getFilter); // Селектор значения фильтра
   const isLoading = useSelector(contactsSelectors.getLoading); // Селектор статуса загрузки
 
   const dispatch = useDispatch();
 
-  const onChange = event =>
-    dispatch(contactsActions.changeFilter(event.currentTarget.value)); // Диспатчит в экшн значение инпута
+  // Диспатчит в экшн значение инпута
+  const onChange = useCallback(
+    e => {
+      dispatch(contactsActions.changeFilter(e.currentTarget.value));
+    },
+    [dispatch],
+  );
 
   return (
     <div className={styles.container}>
@@ -36,6 +42,4 @@ const Filter = () => {
       </label>
     </div>
   );
-};
-
-export default Filter;
+}

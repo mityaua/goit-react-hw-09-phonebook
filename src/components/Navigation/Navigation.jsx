@@ -7,7 +7,7 @@ import routes from '../../routes';
 import styles from './Navigation.module.scss';
 
 // Компонент главной навигации (меню) приложения
-const Navigation = () => {
+export default function Navigation() {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated); // Селектор статуса авторизации юзера
 
   return (
@@ -38,6 +38,4 @@ const Navigation = () => {
       </ul>
     </nav>
   );
-};
-
-export default Navigation;
+}

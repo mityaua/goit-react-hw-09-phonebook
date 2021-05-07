@@ -5,7 +5,7 @@ import { contactsSelectors } from '../../redux/contacts';
 import styles from './AddContactButton.module.scss';
 
 // Компонент кнопки добавления контакта
-const AddContactButton = () => {
+export default function AddContactButton() {
   const isLoading = useSelector(state => contactsSelectors.getLoading(state));
 
   return (
@@ -15,6 +15,4 @@ const AddContactButton = () => {
       </button>
     </div>
   );
-};
-
-export default AddContactButton;
+}
