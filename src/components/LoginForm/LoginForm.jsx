@@ -52,6 +52,7 @@ export default function LoginForm() {
     <form className={styles.form} onSubmit={hanldeSubmit}>
       <label className={styles.label}>
         <span className={styles.text}>Email</span>
+
         <input
           type="email"
           name="email"
@@ -67,6 +68,7 @@ export default function LoginForm() {
 
       <label className={styles.label}>
         <span className={styles.text}>Password</span>
+
         <input
           type="password"
           name="password"

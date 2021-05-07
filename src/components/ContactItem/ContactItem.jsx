@@ -13,12 +13,13 @@ import styles from './ContactItem.module.scss';
 export default function ContactItem({ contact }) {
   const dispatch = useDispatch();
 
+  // Операция удаления контакта + useCallback
   const onDeleteContact = useCallback(
     id => {
       dispatch(contactsOperations.deleteContact(id));
     },
     [dispatch],
-  ); // Операция удаления контакта + useCallback
+  );
 
   return (
     <li className={styles.item}>

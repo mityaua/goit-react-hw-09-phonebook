@@ -26,7 +26,7 @@ const addContact = (name, number) => async dispatch => {
   try {
     const { data } = await axios.post('/contacts', contact);
 
-    toast.success('Added');
+    toast.success('📗 Contact has been added');
     dispatch(actions.addContactSuccess(data));
   } catch (error) {
     dispatch(actions.addContactError(error.message));
@@ -41,7 +41,7 @@ const deleteContact = id => async dispatch => {
   try {
     await axios.delete(`/contacts/${id}`);
 
-    toast.success('Deleted');
+    toast.info('📕 Contact has been deleted');
     dispatch(actions.deleteContactSuccess(id));
   } catch (error) {
     dispatch(actions.deleteContactError(error.message));

@@ -46,29 +46,33 @@ export default function App() {
 
       <Suspense fallback={<Loader />}>
         <Switch>
-          <PublicRoute exact path={routes.home} component={HomePage} />
+          <PublicRoute exact path={routes.home}>
+            <HomePage />
+          </PublicRoute>
 
-          <PrivateRoute
-            path={routes.contacts}
-            component={ContactsPage}
-            redirectTo={routes.login}
-          />
+          <PrivateRoute path={routes.contacts} redirectTo={routes.login}>
+            <ContactsPage />
+          </PrivateRoute>
 
           <PublicRoute
             path={routes.register}
-            component={RegisterPage}
             restricted
             redirectTo={routes.contacts}
-          />
+          >
+            <RegisterPage />
+          </PublicRoute>
 
           <PublicRoute
             path={routes.login}
-            component={LoginPage}
             restricted
             redirectTo={routes.contacts}
-          />
+          >
+            <LoginPage />
+          </PublicRoute>
 
-          <PublicRoute component={PageNotFound} />
+          <PublicRoute>
+            <PageNotFound />
+          </PublicRoute>
         </Switch>
       </Suspense>
 

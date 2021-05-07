@@ -53,6 +53,7 @@ export default function RegisterForm() {
     <form className={styles.form} onSubmit={hanldeSubmit}>
       <label className={styles.label}>
         <span className={styles.text}>Name</span>
+
         <input
           type="text"
           name="name"
@@ -69,6 +70,7 @@ export default function RegisterForm() {
 
       <label className={styles.label}>
         <span className={styles.text}>Email</span>
+
         <input
           type="email"
           name="email"
@@ -84,6 +86,7 @@ export default function RegisterForm() {
 
       <label className={styles.label}>
         <span className={styles.text}>Password</span>
+
         <input
           type="password"
           name="password"

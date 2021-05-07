@@ -6,7 +6,7 @@ import styles from './AddContactButton.module.scss';
 
 // Компонент кнопки добавления контакта
 export default function AddContactButton() {
-  const isLoading = useSelector(state => contactsSelectors.getLoading(state));
+  const isLoading = useSelector(state => contactsSelectors.getLoading(state)); // Селектор статуса загрузки контактов
 
   return (
     <div className={styles.container}>

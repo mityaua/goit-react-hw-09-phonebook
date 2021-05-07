@@ -65,7 +65,7 @@ export default function ContactForm() {
       return;
     }
 
-    toast.info(`${name} is already in contacts`);
+    toast.warn(`😮 ${name} is already in contacts`);
   };
 
   // Сброс полей формы (после отправки)
@@ -77,14 +77,15 @@ export default function ContactForm() {
     <form className={styles.form} onSubmit={hanldeSubmit}>
       <label className={styles.label}>
         <span className={styles.text}>Name</span>
+
         <input
           type="text"
           name="name"
           placeholder="Contact name"
           aria-label="Input for your name"
           className={styles.input}
-          value={name} // Пишет значение в локальный стейт
-          onChange={hanldeChange} // Наблюдающий метод
+          value={name}
+          onChange={hanldeChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           disabled={isLoading}
@@ -94,14 +95,15 @@ export default function ContactForm() {
 
       <label className={styles.label}>
         <span className={styles.text}>Number</span>
+
         <input
           type="tel"
           name="number"
           placeholder="Phone number"
           aria-label="Input for your phone number"
           className={styles.input}
-          value={number} // Пишет значение в локальный стейт
-          onChange={hanldeChange} // Наблюдающий метод
+          value={number}
+          onChange={hanldeChange}
           pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
           title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
           disabled={isLoading}
