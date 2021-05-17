@@ -64,6 +64,7 @@ export default function RegisterForm() {
           onChange={hanldeChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          autoComplete="username"
           required
         />
       </label>
@@ -80,6 +81,7 @@ export default function RegisterForm() {
           placeholder="Your e-mail"
           aria-label="Input for your Email"
           disabled={isLoading}
+          autoComplete="email"
           required
         />
       </label>
@@ -96,6 +98,7 @@ export default function RegisterForm() {
           placeholder="Should be at least 7 characters"
           aria-label="Input for your password"
           disabled={isLoading}
+          autoComplete="new-password"
           required
         />
       </label>

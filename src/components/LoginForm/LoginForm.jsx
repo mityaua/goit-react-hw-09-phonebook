@@ -62,6 +62,7 @@ export default function LoginForm() {
           placeholder="Your e-mail"
           aria-label="Input for your email"
           disabled={isLoading}
+          autoComplete="email"
           required
         />
       </label>
@@ -78,6 +79,7 @@ export default function LoginForm() {
           placeholder="Your password"
           aria-label="Input for your password"
           disabled={isLoading}
+          autoComplete="current-password"
           required
         />
       </label>
